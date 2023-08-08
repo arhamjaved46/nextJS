@@ -11,11 +11,12 @@ const handler = NextAuth({
         })
     ],
     callbacks: {
+
         async session({ session }) {
             const sessionUser = await User.findOne({
                 email: session.user.email
             });
-
+            
             session.user.id = sessionUser._id.toString();
             return session;
         },
@@ -35,15 +36,17 @@ const handler = NextAuth({
                         image: profile.picture
                     });
                 }
-
+                
                 return true;
             } catch (error) {
                 console.log(error);
+                console.log("There was an error");
                 return false;
             }
 
-        }
-    }
+        },
+
+    },
 });
 
 export { handler as GET, handler as POST };

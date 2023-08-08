@@ -7,6 +7,7 @@ export const connectToDB = async () => {
 
     if (isConnected) {
         console.log("MongoDB is already connected");
+        return;
     }
 
     try {
@@ -15,6 +16,9 @@ export const connectToDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
+
+        isConnected = true;
+        console.log('Mongodb is connected');
     } catch (error) {
         console.log(error);
     }
