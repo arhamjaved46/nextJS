@@ -28,7 +28,7 @@ const handler = NextAuth({
 
                 await connectToDB();
                 
-                const userExists = await User.find({
+                const userExists = await User.findOne({
                     email: profile.email
                 });
 
